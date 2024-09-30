@@ -1,0 +1,146 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+  <parent>
+    <groupId>org.springframework.boot</groupId>
+    <artifactId>spring-boot-starter-parent</artifactId>
+    <version>2.2.1.RELEASE</version>
+    <relativePath/> <!-- lookup parent from repository -->
+  </parent>
+  <groupId>com.example</groupId>
+  <artifactId>sayhello</artifactId>
+  <version>0.0.1-SNAPSHOT</version>
+  <name>sayhello</name>
+  <description>Demo project for Spring Boot</description>
+
+  <properties>
+    <java.version>1.8</java.version>
+    <docker.image.prefix>greetingapplication</docker.image.prefix>
+    <dockerfile-maven-version>1.4.13</dockerfile-maven-version>
+    <private.registry.url>docker.io</private.registry.url>
+    <junit-platform.version>5.3.1</junit-platform.version>
+  </properties>
+
+  <dependencies>
+    <dependency>
+      <groupId>org.springframework.boot</groupId>
+      <artifactId>spring-boot-starter-web</artifactId>
+    </dependency>
+    <dependency>
+      <groupId>org.springframework.boot</groupId>
+      <artifactId>spring-boot-starter-test</artifactId>
+      <exclusions>
+        <exclusion>
+          <groupId>org.junit.vintage</groupId>
+          <artifactId>junit-vintage-engine</artifactId>
+        </exclusion>
+      </exclusions>
+      <scope>test</scope>
+      <version>2.2.1.RELEASE</version>
+    </dependency>
+    <dependency>
+      <groupId>org.junit.jupiter</groupId>
+      <artifactId>junit-jupiter-api</artifactId>
+      <version>${junit-platform.version}</version>
+      <scope>test</scope>
+    </dependency>
+    <dependency>
+      <groupId>org.junit.jupiter</groupId>
+      <artifactId>junit-jupiter-engine</artifactId>
+      <version>${junit-platform.version}</version>
+      <scope>test</scope>
+    </dependency>
+  </dependencies>
+
+  <build>
+    <plugins>
+      <plugin>
+        <groupId>org.springframework.boot</groupId>
+        <artifactId>spring-boot-maven-plugin</artifactId>
+      </plugin>
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-compiler-plugin</artifactId>
+      </plugin>
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-surefire-plugin</artifactId>
+        <version>2.22.0</version>
+      </plugin>
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-failsafe-plugin</artifactId>
+        <version>2.22.0</version>
+      </plugin>
+      <plugin>
+        <groupId>org.sonarsource.scanner.maven</groupId>
+        <artifactId>sonar-maven-plugin</artifactId>
+        <version>3.7.0.1746</version>
+      </plugin>
+      <!--Pluging to generate docker image-->
+<!--      <plugin>-->
+<!--        <groupId>com.spotify</groupId>-->
+<!--        <artifactId>dockerfile-maven-plugin</artifactId>-->
+<!--        <version>1.4.13</version>-->
+<!--        <executions>-->
+<!--          <execution>-->
+<!--            <id>default</id>-->
+<!--            <goals>-->
+<!--              <goal>build</goal>-->
+<!--            </goals>-->
+<!--          </execution>-->
+<!--          <execution>-->
+<!--            <id>tag-latest</id>-->
+<!--            <goals>-->
+<!--              <goal>tag</goal>-->
+<!--              &lt;!&ndash;<goal>push</goal>&ndash;&gt;-->
+<!--            </goals>-->
+<!--            <configuration>-->
+<!--              <tag>latest</tag>-->
+<!--            </configuration>-->
+<!--          </execution>-->
+<!--          <execution>-->
+<!--            <id>tag-version</id>-->
+<!--            <goals>-->
+<!--              <goal>tag</goal>-->
+<!--            </goals>-->
+<!--            <configuration>-->
+<!--              <tag>${project.version}</tag>-->
+<!--            </configuration>-->
+<!--          </execution>-->
+<!--        </executions>-->
+<!--        &lt;!&ndash; Necessary because the Maven Archiver plugin is not yet ready for java 9/10 &ndash;&gt;-->
+<!--        <dependencies>-->
+<!--          <dependency>-->
+<!--            <groupId>org.codehaus.plexus</groupId>-->
+<!--            <artifactId>plexus-archiver</artifactId>-->
+<!--            <version>3.4</version>-->
+<!--          </dependency>-->
+<!--          <dependency>-->
+<!--            <groupId>javax.activation</groupId>-->
+<!--            <artifactId>javax.activation-api</artifactId>-->
+<!--            <version>1.2.0</version>-->
+<!--          </dependency>-->
+<!--        </dependencies>-->
+<!--        <configuration>-->
+<!--          <repository>${private.registry.url}/albertolaley/${project.artifactId}</repository>-->
+<!--          <tag>latest</tag>-->
+<!--          <useMavenSettingsForAuth>true</useMavenSettingsForAuth>-->
+<!--          <skip>false</skip>-->
+<!--        </configuration>-->
+<!--        &lt;!&ndash;        <configuration>&ndash;&gt;-->
+<!--        &lt;!&ndash;          <repository>${docker.image.prefix}/${project.artifactId}</repository>&ndash;&gt;-->
+<!--        &lt;!&ndash;          <tag>${project.version}</tag>&ndash;&gt;-->
+<!--        &lt;!&ndash;          <buildArgs>&ndash;&gt;-->
+<!--        &lt;!&ndash;            <JAR_FILE>target/${project.build.finalName}.jar</JAR_FILE>&ndash;&gt;-->
+<!--        &lt;!&ndash;          </buildArgs>&ndash;&gt;-->
+<!--        &lt;!&ndash;          <useMavenSettingsForAuth>true</useMavenSettingsForAuth>&ndash;&gt;-->
+<!--        &lt;!&ndash;          <skip>false</skip>&ndash;&gt;-->
+<!--        &lt;!&ndash;        </configuration>&ndash;&gt;-->
+<!--      </plugin>-->
+
+    </plugins>
+  </build>
+
+</project>
